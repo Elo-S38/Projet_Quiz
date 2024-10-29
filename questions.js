@@ -1,7 +1,7 @@
 export const QUIZ = {
 	questions: [
 		{
-			text: "Qui à dit : La vie est un mystère qu'il faut vivre, et non un problème à résoudre.",
+			text: "La vie est un mystère qu'il faut vivre, et non un problème à résoudre.",
 			options: [
 				"John F. Kennedy",
 				"Ghandi",
@@ -11,7 +11,7 @@ export const QUIZ = {
 			correct_answer: "Ghandi"
 		},
 		{
-			text: "Qui à dit : Seuls ceux qui sont assez fous pour penser qu'ils peuvent changer le monde y parviennent.",
+			text: " Seuls ceux qui sont assez fous pour penser qu'ils peuvent changer le monde y parviennent.",
 			options: [
 				"Einstein",
 				"Ghandi",

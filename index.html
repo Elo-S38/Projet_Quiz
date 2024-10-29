@@ -3,28 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Quiz Game</title>
 <link rel="stylesheet" href="style.css">
+<script type ="text/javascript" defer src="questions.js"></script>
+<script type="module" defer src="game.js"></script>
 </head>
 <body>
-	<script type="text/javascript" src="questions.js"></script>
+	<h1> Qui a dit? </h1>
 	<div id="quiz-container">
-	<!-- Section pour la question -->
+			<!-- Section pour la question -->
 		<div class="question">
-            <strong>Qui à dit : "La vie est un mystère qu'il faut vivre, et non un problème à résoudre." ?</strong>
-		</div>
+            		</div>
 		<!-- Section pour les options -->
 		<div class="options">
-		  <button>John F. Kennedy</button>
-		  <br><button>Ghandi</button>
-		  <br><button>Antoine De Saint Exupery</button>
-		  <br><button>Le Buddha</button>
-		</div>
+		 	</div>
 		
-			<!-- Prévois déjà le design du bouton "suivant" pour passer à la prochaine question -->
-		 	<div class="button-container">
-		  		<button id="next-button">Suivant</button>
-			</div>
+		<!-- Prévois déjà le design du bouton "suivant" pour passer à la prochaine question -->
+		 <div class="button-container">
+		  <button id="next-button">Suivant</button>
+		  <button id="replay-button" style="display: none;">Rejouer</button> 
 		</div>
-	</body>
+	</div>
+</body>
 </html>
