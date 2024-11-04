@@ -4,6 +4,7 @@ const question = document.querySelector ('.question')
 const options = document.querySelector ('.options')
 
 let currentQuestionIndex = 0
+let timer = 10
 
 let nextButton = document.getElementById ("next-button")
 
@@ -11,9 +12,10 @@ let replay = document.getElementById ("replay-button")
 let score = 0
 
 function loadQuestion () {
+	console.log(currentQuestionIndex)
 	nextButton.disabled = true
 	//document.querySelector('.options').style.pointerEvents = 'auto'
-    options.innerHTML = ''
+    options.innerHTML = '';
     const actualQuestion = QUIZ.questions[currentQuestionIndex]
     question.innerText = actualQuestion.text
     for (const elt of actualQuestion.options)
@@ -21,6 +23,8 @@ function loadQuestion () {
         const button = document.createElement('button');		
     	button.innerText = elt;
 		button.addEventListener('click', () => {
+			clearInterval(ID)
+			clearInterval(TimerID)
 			nextButton.disabled = false
 			if (checkAnswer(button.innerText) == true)
 			{
@@ -37,11 +41,13 @@ function loadQuestion () {
 			disableAllButton()       // disable tt les buttons en les recuperant tous et en les desactivants un par un
 		})
     	options.appendChild(button);
+		
     }
+	currentQuestionIndex ++;
 }
 
 function checkAnswer(selectedOption) {
-	if (selectedOption == QUIZ.questions[currentQuestionIndex].correct_answer)
+	if (selectedOption == QUIZ.questions[currentQuestionIndex - 1].correct_answer)
 	{
 		return (true)
 	}
@@ -73,45 +79,170 @@ function colorCorrectQuestion()
 
 nextButton.addEventListener('click', () => {
     // Incrémenter l'index de la question
-    currentQuestionIndex ++;
-  
+    //currentQuestionIndex ++;
+	clearInterval(ID)
     // Vérifier s'il reste des questions
-    if (currentQuestionIndex < QUIZ.questions.length) {
-      // Afficher la question suivante
-    	loadQuestion();
-    } 
+	if (currentQuestionIndex < QUIZ.questions.length) {
+		// Afficher la question suivante
+		clearInterval(TimerID)
+		loadQuestion()
+		timer = 10
+		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+		TimerID = setInterval(() => {
+				timer--;
+				document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+			}, 1000)
+		ID = setInterval(() => {
+			clearInterval(TimerID)
+			document.querySelector('#timer').innerText = ''
+			if (currentQuestionIndex < QUIZ.questions.length) {
+				// Afficher la question suivante
+				loadQuestion()
+			}
+			else {
+				clearInterval(ID)
+				if (score == QUIZ.questions.length)
+					{
+						question.innerText = "Bravo! Vous avez parfaitement maitrisé ce thème, votre score : " + score + ' / ' + QUIZ.questions.length
+						confetti({
+							particleCount: 150,
+							spread: 180
+						})
+					}
+				else if (score >= (QUIZ.questions.length/2))
+				{
+					question.innerText = "Bravo! Vous avez répondu correctement à au moins la moitié des questions, Votre score: " + score + ' / ' + QUIZ.questions.length
+				}
+				else {
+					question.innerText = "Votre score: " + score + ' / ' + QUIZ.questions.length + ", moins de la moyenne..., il va falloir revoir vos connaissances sur ce Quiz"
+				}
+				options.innerHTML = ''; // Effacer les options
+				nextButton.style.display = 'none'; // Cacher le bouton Suivant
+				document.querySelector('h1').innerText = ''
+				replay.style.display = 'inline-block'
+			}
+		}, 10000)
+	}
 	else {
-      // Si plus de questions, indiquer la fin du quiz
+		clearInterval(ID)
+		clearInterval(TimerID)
+		document.querySelector('#timer').innerText = ''
 		if (score == QUIZ.questions.length)
-		{
-			question.innerText = "Bravo! Vous avez parfaitement maitrisé ce thème, votre score : " + score + ' / ' + QUIZ.questions.length
-			confetti({
-				particleCount: 150,
-				spread: 180
-			})
-		}
+			{
+				question.innerText = "Bravo! Vous avez parfaitement maitrisé ce thème, votre score : " + score + ' / ' + QUIZ.questions.length
+				confetti({
+					particleCount: 150,
+					spread: 180
+				})
+			}
 		else if (score >= (QUIZ.questions.length/2))
 		{
-    		question.innerText = "Bravo! Vous avez répondu correctement à au moins la moitié des questions, Votre score: " + score + ' / ' + QUIZ.questions.length
+			question.innerText = "Bravo! Vous avez répondu correctement à au moins la moitié des questions, Votre score: " + score + ' / ' + QUIZ.questions.length
 		}
 		else {
 			question.innerText = "Votre score: " + score + ' / ' + QUIZ.questions.length + ", moins de la moyenne..., il va falloir revoir vos connaissances sur ce Quiz"
 		}
-    	options.innerHTML = ''; // Effacer les options
-    	nextButton.style.display = 'none'; // Cacher le bouton Suivant
-    	document.querySelector('h1').innerText = ''
-    	replay.style.display = 'inline-block'
-    }
+		options.innerHTML = ''; // Effacer les options
+		nextButton.style.display = 'none'; // Cacher le bouton Suivant
+		document.querySelector('h1').innerText = ''
+		replay.style.display = 'inline-block'
+	}
 });
 
 replay.addEventListener ('click', () =>{
+	clearInterval(ID)
+	clearInterval(TimerID)
 	currentQuestionIndex = 0;
     replay.style.display = 'none';
     nextButton.style.display = 'inline-block';
     document.querySelector('h1').innerText = 'Qui a dit?'
 	score = 0
-    loadQuestion()
+	timer = 10
+	document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+	loadQuestion()
+	TimerID = setInterval(() => {
+		timer--;
+		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+	}, 1000)
+    ID = setInterval(() => {
+		if (currentQuestionIndex < QUIZ.questions.length) {
+			// Afficher la question suivante
+			clearInterval(TimerID)
+			timer = 10
+			document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+			TimerID = setInterval(() => {
+				timer--;
+				document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+			}, 1000)
+			loadQuestion()
+		}
+		else {
+			clearInterval(ID)
+			clearInterval(TimerID)
+			document.querySelector('#timer').innerText = ''
+			if (score == QUIZ.questions.length)
+				{
+					question.innerText = "Bravo! Vous avez parfaitement maitrisé ce thème, votre score : " + score + ' / ' + QUIZ.questions.length
+					confetti({
+						particleCount: 150,
+						spread: 180
+					})
+				}
+			else if (score >= (QUIZ.questions.length/2))
+			{
+				question.innerText = "Bravo! Vous avez répondu correctement à au moins la moitié des questions, Votre score: " + score + ' / ' + QUIZ.questions.length
+			}
+			else {
+				question.innerText = "Votre score: " + score + ' / ' + QUIZ.questions.length + ", moins de la moyenne..., il va falloir revoir vos connaissances sur ce Quiz"
+			}
+			options.innerHTML = ''; // Effacer les options
+			nextButton.style.display = 'none'; // Cacher le bouton Suivant
+			document.querySelector('h1').innerText = ''
+			replay.style.display = 'inline-block'
+		}
+	}, 10000)
 })
 
-
 loadQuestion()
+document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+let TimerID = setInterval(() => {
+	timer--;
+	document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+}, 1000)
+let ID = setInterval(() => {
+	if (currentQuestionIndex < QUIZ.questions.length) {
+		// Afficher la question suivante
+		clearInterval(TimerID)
+		timer = 10
+		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+		loadQuestion()
+		TimerID = setInterval(() => {
+			timer--;
+			document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+		}, 1000)
+	}
+	else {
+		clearInterval(ID)
+		clearInterval(TimerID)
+		document.querySelector('#timer').innerText = ''
+		if (score == QUIZ.questions.length)
+			{
+				question.innerText = "Bravo! Vous avez parfaitement maitrisé ce thème, votre score : " + score + ' / ' + QUIZ.questions.length
+				confetti({
+					particleCount: 150,
+					spread: 180
+				})
+			}
+		else if (score >= (QUIZ.questions.length/2))
+		{
+			question.innerText = "Bravo! Vous avez répondu correctement à au moins la moitié des questions, Votre score: " + score + ' / ' + QUIZ.questions.length
+		}
+		else {
+			question.innerText = "Votre score: " + score + ' / ' + QUIZ.questions.length + ", moins de la moyenne..., il va falloir revoir vos connaissances sur ce Quiz"
+		}
+		options.innerHTML = ''; // Effacer les options
+    	nextButton.style.display = 'none'; // Cacher le bouton Suivant
+    	document.querySelector('h1').innerText = ''
+    	replay.style.display = 'inline-block'
+	}
+}, 10000)
