@@ -8,6 +8,9 @@ let timer = 15
 let nextButton = document.getElementById ("next-button")
 let replay = document.getElementById ("replay-button")
 let score = 0
+let currentBar = currentQuestionIndex + 1
+let progressionBar = document.getElementById ("ProgressBar");
+
 
 function loadQuestion () {
 	console.log(currentQuestionIndex)
@@ -105,6 +108,8 @@ function startInterval(){
 	return (setInterval(() => {
 		if (currentQuestionIndex < QUIZ.questions.length) {
 			// Afficher la question suivante
+      currentBar ++;
+      progressionBar.value = currentBar  
 			clearInterval(TimerID)
 			timer = 15
 			document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
@@ -130,6 +135,9 @@ function setTimer() {
 
 nextButton.addEventListener('click', () => {
     // Incrémenter l'index de la question
+	currentBar ++;
+  progressionBar.value = currentBar  
+
 	clearInterval(ID)
     // Vérifier s'il reste des questions
 	if (currentQuestionIndex < QUIZ.questions.length) {
@@ -154,6 +162,8 @@ replay.addEventListener ('click', () =>{
 	clearInterval(ID)
 	clearInterval(TimerID)
 	currentQuestionIndex = 0;
+	currentBar= 1; 
+        progressionBar.value = currentBar
     replay.style.display = 'none';
     nextButton.style.display = 'inline-block';
     document.querySelector('h1').innerText = 'Qui a dit?'
@@ -167,5 +177,6 @@ replay.addEventListener ('click', () =>{
 
 loadQuestion()
 document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+
 let TimerID = setTimer()
 let ID = startInterval()
