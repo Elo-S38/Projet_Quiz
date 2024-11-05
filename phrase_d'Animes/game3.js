@@ -8,6 +8,9 @@ let timer = 10
 let nextButton = document.getElementById ("next-button")
 let replay = document.getElementById ("replay-button")
 let score = 0
+let currentBar = currentQuestionIndex + 1
+let progressionBar = document.getElementById ("ProgressBar");
+
 
 function loadQuestion (){
 	console.log(currentQuestionIndex)
@@ -78,6 +81,8 @@ function colorCorrectQuestion()
 nextButton.addEventListener('click', () => {
     // Incrémenter l'index de la question
     //currentQuestionIndex ++;
+	currentBar ++;
+    progressionBar.value = currentBar  
 	clearInterval(ID)
     // Vérifier s'il reste des questions
 	if (currentQuestionIndex < QUIZ.questions.length) {
@@ -95,6 +100,8 @@ nextButton.addEventListener('click', () => {
 			document.querySelector('#timer').innerText = ''
 			if (currentQuestionIndex < QUIZ.questions.length) {
 				// Afficher la question suivante
+				currentBar ++;
+   			 	progressionBar.value = currentBar 
 				loadQuestion()
 			}
 			else {
@@ -151,6 +158,8 @@ replay.addEventListener ('click', () =>{
 	clearInterval(ID)
 	clearInterval(TimerID)
 	currentQuestionIndex = 0;
+	currentBar= 1; 
+        progressionBar.value = currentBar
     replay.style.display = 'none';
     nextButton.style.display = 'inline-block';
     document.querySelector('h1').innerText = 'Completez la phrase:'
@@ -165,6 +174,8 @@ replay.addEventListener ('click', () =>{
     ID = setInterval(() => {
 		if (currentQuestionIndex < QUIZ.questions.length) {
 			// Afficher la question suivante
+			currentBar ++;
+   			 progressionBar.value = currentBar 
 			clearInterval(TimerID)
 			timer = 10
 			document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
@@ -210,6 +221,8 @@ let TimerID = setInterval(() => {
 let ID = setInterval(() => {
 	if (currentQuestionIndex < QUIZ.questions.length) {
 		// Afficher la question suivante
+		currentBar ++;
+   			 progressionBar.value = currentBar 
 		clearInterval(TimerID)
 		timer = 10
 		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"

@@ -123,3 +123,43 @@ h1{
 		  #menu{
 		  width: auto;
 		  }
+
+		  progress {
+			background-color:#264653;
+			margin-left: 43%;
+			margin-top: 3%;
+			width: 300px;
+			height: 20px;
+			box-shadow:10px 10px 10px black;
+			}
+
+
+			progress[value] {
+				--w: 200px; /* the width*/
+				--color:  /* the progress color */
+				  linear-gradient(90deg,#264653,#7FB196) 0/var(--w);
+				--background: lightgrey; /* the background color */
+			  
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: none;
+				width: var(--w);
+				margin: 0 10px;
+				border-radius: 10em;
+				background: var(--background);
+			  }
+
+			  progress[value]::-webkit-progress-value {
+				border-radius: 10em;
+				background: var(--color);
+			  }
+			  progress[value]::-moz-progress-bar {
+				border-radius: 10em;
+				background: var(--color);
+			  }
+#progress{
+	text-align: center;
+	margin-top: 100px;
+	
+}
