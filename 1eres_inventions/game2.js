@@ -4,7 +4,7 @@ const question = document.querySelector ('.question')
 const options = document.querySelector ('.options')
 
 let currentQuestionIndex = 0
-let timer = 10
+let timer = 15
 let nextButton = document.getElementById ("next-button")
 let replay = document.getElementById ("replay-button")
 let score = 0
@@ -84,7 +84,7 @@ nextButton.addEventListener('click', () => {
 		// Afficher la question suivante
 		clearInterval(TimerID)
 		loadQuestion()
-		timer = 10
+		timer = 15
 		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
 		TimerID = setInterval(() => {
 				timer--;
@@ -96,6 +96,12 @@ nextButton.addEventListener('click', () => {
 			if (currentQuestionIndex < QUIZ.questions.length) {
 				// Afficher la question suivante
 				loadQuestion()
+				timer = 15
+				document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+				TimerID = setInterval(() => {
+					timer--;
+					document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+				}, 1000)
 			}
 			else {
 				clearInterval(ID)
@@ -104,7 +110,11 @@ nextButton.addEventListener('click', () => {
 						question.innerText = "Bravo! Vous avez parfaitement maitrisé ce thème, votre score : " + score + ' / ' + QUIZ.questions.length
 						confetti({
 							particleCount: 150,
-							spread: 180
+							spread: 180,
+							origin: {
+								x: 0.5,
+								y: 0.7
+							}
 						})
 					}
 				else if (score >= (QUIZ.questions.length/2))
@@ -119,7 +129,7 @@ nextButton.addEventListener('click', () => {
 				document.querySelector('h1').innerText = ''
 				replay.style.display = 'inline-block'
 			}
-		}, 10000)
+		}, 15000)
 	}
 	else {
 		clearInterval(ID)
@@ -130,7 +140,11 @@ nextButton.addEventListener('click', () => {
 				question.innerText = "Bravo! Vous avez parfaitement maitrisé ce thème, votre score : " + score + ' / ' + QUIZ.questions.length
 				confetti({
 					particleCount: 150,
-					spread: 180
+					spread: 180,
+					origin: {
+						x: 0.5,
+						y: 0.7
+					}
 				})
 			}
 		else if (score >= (QUIZ.questions.length/2))
@@ -153,7 +167,7 @@ replay.addEventListener ('click', () =>{
     replay.style.display = 'none';
     nextButton.style.display = 'inline-block';
 	score = 0
-	timer = 10
+	timer = 15
 	document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
 	loadQuestion()
 	TimerID = setInterval(() => {
@@ -164,7 +178,7 @@ replay.addEventListener ('click', () =>{
 		if (currentQuestionIndex < QUIZ.questions.length) {
 			// Afficher la question suivante
 			clearInterval(TimerID)
-			timer = 10
+			timer = 15
 			document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
 			TimerID = setInterval(() => {
 				timer--;
@@ -181,7 +195,11 @@ replay.addEventListener ('click', () =>{
 					question.innerText = "Bravo! Vous avez parfaitement maitrisé ce thème, votre score : " + score + ' / ' + QUIZ.questions.length
 					confetti({
 						particleCount: 150,
-						spread: 180
+						spread: 180,
+						origin: {
+							x: 0.5,
+							y: 0.7
+						}
 					})
 				}
 			else if (score >= (QUIZ.questions.length/2))
@@ -195,7 +213,7 @@ replay.addEventListener ('click', () =>{
 			nextButton.style.display = 'none'; // Cacher le bouton Suivant
 			replay.style.display = 'inline-block'
 		}
-	}, 10000)
+	}, 15000)
 })
 
 loadQuestion()
@@ -208,7 +226,7 @@ let ID = setInterval(() => {
 	if (currentQuestionIndex < QUIZ.questions.length) {
 		// Afficher la question suivante
 		clearInterval(TimerID)
-		timer = 10
+		timer = 15
 		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
 		loadQuestion()
 		TimerID = setInterval(() => {
@@ -225,7 +243,11 @@ let ID = setInterval(() => {
 				question.innerText = "Bravo! Vous avez parfaitement maitrisé ce thème, votre score : " + score + ' / ' + QUIZ.questions.length
 				confetti({
 					particleCount: 150,
-					spread: 180
+					spread: 180,
+					origin: {
+						x: 0.5,
+						y: 0.7
+					}
 				})
 			}
 		else if (score >= (QUIZ.questions.length/2))
@@ -239,4 +261,4 @@ let ID = setInterval(() => {
     	nextButton.style.display = 'none'; // Cacher le bouton Suivant
     	replay.style.display = 'inline-block'
 	}
-}, 10000)
+}, 15000)

@@ -40,8 +40,6 @@ h1{
     margin-right: 10%;
     border-radius: 50px;
     box-shadow:10px 10px 10px black ;
-
-    
 }
 
 .options {
@@ -123,3 +121,10 @@ h1{
 		  #menu{
 		  width: auto;
 		  }
+
+#timer {
+	text-align: center;
+	font-size:150%;
+   	font-family:Georgia, 'Times New Roman', Times, serif;
+	color: red;
+}
