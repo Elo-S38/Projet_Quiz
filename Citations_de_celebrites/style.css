@@ -98,7 +98,8 @@ h1{
 	  }
 		.nav-btn1,
 		.nav-btn2,
-		.nav-btn3{
+		.nav-btn3,
+		.score{
 		  display:flex;
 		  background:#69ad87;
 		  color: #222;
