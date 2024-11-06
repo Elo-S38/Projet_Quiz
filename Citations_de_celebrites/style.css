@@ -53,6 +53,12 @@ h1{
     border-width: 5px;  
 }
 
+.options button:hover {
+    cursor: pointer;
+    scale: 1.25;
+    background-color: #7FB196;
+}
+
 .button-container {
         text-align: center;
         margin-top: 50px;
@@ -161,4 +167,23 @@ h1{
 			font-size:150%;
 			font-family:Georgia, 'Times New Roman', Times, serif;
 			color: red;
+		}
+
+		.button-container:hover {
+			cursor: pointer;
+			color:#F2C98C
+			}
+		
+		
+				
+		#next-button:hover {
+			cursor: pointer;
+			background-color:#F2C98C;
+			scale: 1.25;
+			}
+		
+		#replay-button:hover {
+			cursor: pointer;
+			background-color:#F2C98C;
+			scale: 1.25;
 		}
