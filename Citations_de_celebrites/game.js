@@ -1,7 +1,45 @@
-import { QUIZ } from './questions.js';
+import { QUIZ1 } from './questions.js';
+import { QUIZ2 } from './questions2.js';
+import { QUIZ3 } from './questions3.js';
+
+let QUIZ = QUIZ1
+let message = document.querySelector('h1').innerText;
+
+if (window.sessionStorage.QUIZ)
+{
+	if (window.sessionStorage.getItem('QUIZ') == "1")
+	{
+		QUIZ = QUIZ1
+		message = "Qui à dit ?"
+	}
+	else if (window.sessionStorage.getItem('QUIZ') == "2")
+	{
+		QUIZ = QUIZ2
+		message = "Le sais-tu ?"
+	}
+	else
+	{
+		QUIZ = QUIZ3
+		message = "Complète cette phrase"
+	}
+}
 
 const question = document.querySelector ('.question')
 const options = document.querySelector ('.options')
+
+let theme1 = document.querySelector('.NavBar #menu .nav-btn1')
+let theme2 = document.querySelector('.NavBar #menu .nav-btn2')
+let theme3 = document.querySelector('.NavBar #menu .nav-btn3')
+
+theme1.addEventListener('click', () => {
+	window.sessionStorage.setItem('QUIZ', "1")
+})
+theme2.addEventListener('click', () => {
+	window.sessionStorage.setItem('QUIZ', "2")
+})
+theme3.addEventListener('click', () => {
+	window.sessionStorage.setItem('QUIZ', "3")
+})
 
 let currentQuestionIndex = 0
 let timer = 15
@@ -10,10 +48,9 @@ let replay = document.getElementById ("replay-button")
 let score = 0
 let currentBar = currentQuestionIndex + 1
 let progressionBar = document.getElementById ("ProgressBar");
-
+document.querySelector('h1').innerText = message
 
 function loadQuestion () {
-	console.log(currentQuestionIndex)
 	nextButton.disabled = true
     options.innerHTML = '';
     const actualQuestion = QUIZ.questions[currentQuestionIndex]
@@ -106,10 +143,11 @@ function reset(){
 
 function startInterval(){
 	return (setInterval(() => {
+		currentBar ++;
+      	progressionBar.value = currentBar 
 		if (currentQuestionIndex < QUIZ.questions.length) {
 			// Afficher la question suivante
-      currentBar ++;
-      progressionBar.value = currentBar  
+       
 			clearInterval(TimerID)
 			timer = 15
 			document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
@@ -163,10 +201,10 @@ replay.addEventListener ('click', () =>{
 	clearInterval(TimerID)
 	currentQuestionIndex = 0;
 	currentBar= 1; 
-        progressionBar.value = currentBar
+    progressionBar.value = currentBar
     replay.style.display = 'none';
     nextButton.style.display = 'inline-block';
-    document.querySelector('h1').innerText = 'Qui a dit?'
+    document.querySelector('h1').innerText = message
 	score = 0
 	timer = 15
 	document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"

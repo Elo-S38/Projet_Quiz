@@ -1,4 +1,4 @@
-export const QUIZ = {
+export const QUIZ1 = {
 	questions: [
 		{
 			text: "La vie est un mystère qu'il faut vivre, et non un problème à résoudre.",

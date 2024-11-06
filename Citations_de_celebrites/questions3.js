@@ -1,4 +1,4 @@
-export const QUIZ = {
+export const QUIZ3 = {
 	questions: [
 		{
 			text: "La Team Rocket, plus rapide que...",

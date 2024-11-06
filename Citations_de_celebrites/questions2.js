@@ -1,4 +1,4 @@
-export const QUIZ = {
+export const QUIZ2 = {
 	questions: [
 		{
 			text: "Quand est apparue la 1ere machine à laver?",
