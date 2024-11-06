@@ -11,7 +11,7 @@ export const QUIZ2 = {
 			correct_answer:"1767"
 		},
 		{
-			text: "l'invention du 1er écran tactile date de:",
+			text: "L'invention du 1er écran tactile date de:",
 			options:[
 				"75 av-JC",
 				"1965",
@@ -21,7 +21,7 @@ export const QUIZ2 = {
 			correct_answer:"1965"
 		},
 		{
-			text: "Le 1er smartphone, née en 1994, s'appellait:",
+			text: "Le 1er smartphone, né en 1994, s'appelait:",
 			options:[
 				"Marcus",
 				"Simon",

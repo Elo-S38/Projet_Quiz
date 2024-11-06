@@ -6,7 +6,7 @@ export const QUIZ3 = {
 				"la lumière!",
 				"l'éclair!",
 				"la foudre!",
-				"le tonnere!"
+				"le tonnerre!"
 			],
 			correct_answer:"la lumière!"
 		},
@@ -33,7 +33,7 @@ export const QUIZ3 = {
 		{
 			text: "Même les plus petits peuvent ...",
 			options:[
-				"avoir une grande geule",
+				"avoir une grande gueule",
 				"faire une grande différence",
 				"avoir une grande chance",
 				"defaire une grande manigance"
