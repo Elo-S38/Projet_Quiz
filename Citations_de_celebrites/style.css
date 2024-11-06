@@ -3,7 +3,7 @@ body {
 }
 
 #quiz-container{
-    margin-top:5%;
+    margin-top:3%;
     border:#264653 20px solid; ;
     background-color: #264653;
     border-radius: 30%;
@@ -16,7 +16,7 @@ h1{
     text-align: center;
     text-shadow: black ;
     color: #264653;
-   margin-top:7.5%;
+   margin-top:2%;
    font-size:400%;
    font-family:Georgia, 'Times New Roman', Times, serif;
    text-shadow: 1px 1px 2px #526779, 0 0 1em black, 0 0 0.0em black;

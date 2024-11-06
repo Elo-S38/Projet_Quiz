@@ -10,7 +10,7 @@ if (window.sessionStorage.QUIZ)
 	if (window.sessionStorage.getItem('QUIZ') == "1")
 	{
 		QUIZ = QUIZ1
-		message = "Qui à dit ?"
+		message = "Qui a dit ?"
 	}
 	else if (window.sessionStorage.getItem('QUIZ') == "2")
 	{
@@ -141,26 +141,32 @@ function reset(){
 	replay.style.display = 'inline-block'
 }
 
+function Quiz(){
+	currentBar ++;
+    progressionBar.value = currentBar 
+	if (currentQuestionIndex < QUIZ.questions.length) {
+		// Afficher la question suivante
+      
+		clearInterval(TimerID)
+		timer = 15
+		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
+		TimerID = setTimer()
+		loadQuestion()
+	}
+	else {
+		clearInterval(ID)
+		clearInterval(TimerID)
+		document.querySelector('#timer').innerText = ''
+		endMessage()
+		reset()
+		console.log (score)
+		window.localStorage.setItem ("score", score)
+	}
+}
+
 function startInterval(){
 	return (setInterval(() => {
-		currentBar ++;
-      	progressionBar.value = currentBar 
-		if (currentQuestionIndex < QUIZ.questions.length) {
-			// Afficher la question suivante
-       
-			clearInterval(TimerID)
-			timer = 15
-			document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
-			TimerID = setTimer()
-			loadQuestion()
-		}
-		else {
-			clearInterval(ID)
-			clearInterval(TimerID)
-			document.querySelector('#timer').innerText = ''
-			endMessage()
-			reset()
-		}
+		Quiz()
 	}, 15000))
 }
 
@@ -172,28 +178,8 @@ function setTimer() {
 }
 
 nextButton.addEventListener('click', () => {
-    // Incrémenter l'index de la question
-	currentBar ++;
-  progressionBar.value = currentBar  
-
 	clearInterval(ID)
-    // Vérifier s'il reste des questions
-	if (currentQuestionIndex < QUIZ.questions.length) {
-		// Afficher la question suivante
-		clearInterval(TimerID)
-		loadQuestion()
-		timer = 15
-		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
-		TimerID = setTimer()
-		ID = startInterval()
-	}
-	else {
-		clearInterval(ID)
-		clearInterval(TimerID)
-		document.querySelector('#timer').innerText = ''
-		endMessage()
-		reset()
-	}
+	Quiz()
 });
 
 replay.addEventListener ('click', () =>{
