@@ -50,6 +50,33 @@ let currentBar = currentQuestionIndex + 1
 let progressionBar = document.getElementById ("ProgressBar");
 document.querySelector('h1').innerText = message
 
+function Score(){
+	let scoreArray = []
+	let nbTentatives = 0
+	if (window.localStorage.scoreArray)
+	{
+		scoreArray = JSON.parse(window.localStorage.getItem("scoreArray"))
+	}
+	if (window.localStorage.nbTentatives = window.localStorage.getItem('nbTentatives'))
+	{
+		nbTentatives = window.localStorage.getItem('nbTentatives')
+	}
+	else
+	{
+		window.localStorage.setItem("nbTentatives", nbTentatives)
+	}
+	let scoreP = document.querySelector('#score');
+
+	if (window.localStorage.score && scoreArray.length <= nbTentatives)
+	{
+		console.log("ok");
+		scoreArray.push(localStorage.getItem('score'))
+		window.localStorage.setItem("scoreArray", JSON.stringify(scoreArray))
+		nbTentatives++
+		window.localStorage.setItem('nbTentatives', nbTentatives)
+	}
+}
+
 function loadQuestion () {
 	nextButton.disabled = true
     options.innerHTML = '';
@@ -158,9 +185,9 @@ function Quiz(){
 		clearInterval(TimerID)
 		document.querySelector('#timer').innerText = ''
 		endMessage()
-		reset()
-		console.log (score)
+		reset()	
 		window.localStorage.setItem ("score", score)
+		Score()
 	}
 }
 
