@@ -65,7 +65,6 @@ function Score(){
 	{
 		window.localStorage.setItem("nbTentatives", nbTentatives)
 	}
-	let scoreP = document.querySelector('#score');
 
 	if (window.localStorage.score && scoreArray.length <= nbTentatives)
 	{
