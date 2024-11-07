@@ -65,7 +65,7 @@ function Score(){
 	{
 		window.localStorage.setItem("nbTentatives", nbTentatives)
 	}
-	if (window.localStorage.score && scoreArray.length <= nbTentatives)
+	if (window.localStorage.score)
 	{
 		scoreArray.push(localStorage.getItem('score'))
 		window.localStorage.setItem("scoreArray", JSON.stringify(scoreArray))

@@ -28,7 +28,7 @@ h1{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size:x-large;
     margin-bottom: 50px;
-    margin-top: 25px;
+    margin-top: 15px;
     border: #7FB196 20px solid;
     background-color: #7FB196;
     margin-left: 10%;
@@ -160,7 +160,7 @@ h1{
 			  }
 #progress{
 	text-align: center;
-	margin-top: 100px;
+	margin-top: 50px;
 	
 }
 		  #timer {
