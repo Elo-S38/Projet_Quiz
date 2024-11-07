@@ -68,7 +68,6 @@ function Score(){
 
 	if (window.localStorage.score && scoreArray.length <= nbTentatives)
 	{
-		console.log("ok");
 		scoreArray.push(localStorage.getItem('score'))
 		window.localStorage.setItem("scoreArray", JSON.stringify(scoreArray))
 		nbTentatives++
@@ -169,15 +168,15 @@ function reset(){
 
 function Quiz(){
 	currentBar ++;
-    progressionBar.value = currentBar 
+    progressionBar.value = currentBar
+	clearInterval(TimerID)
 	if (currentQuestionIndex < QUIZ.questions.length) {
 		// Afficher la question suivante
-      
-		clearInterval(TimerID)
 		timer = 15
 		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
-		TimerID = setTimer()
+		clearInterval(TimerID)
 		loadQuestion()
+		TimerID = setTimer()
 	}
 	else {
 		clearInterval(ID)
@@ -205,7 +204,9 @@ function setTimer() {
 
 nextButton.addEventListener('click', () => {
 	clearInterval(ID)
+	clearInterval(TimerID)
 	Quiz()
+	ID = startInterval()
 });
 
 replay.addEventListener ('click', () =>{
