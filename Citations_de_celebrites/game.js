@@ -57,7 +57,7 @@ function Score(){
 	{
 		scoreArray = JSON.parse(window.localStorage.getItem("scoreArray"))
 	}
-	if (window.localStorage.nbTentatives = window.localStorage.getItem('nbTentatives'))
+	if (window.localStorage.nbTentatives)
 	{
 		nbTentatives = window.localStorage.getItem('nbTentatives')
 	}
@@ -65,7 +65,6 @@ function Score(){
 	{
 		window.localStorage.setItem("nbTentatives", nbTentatives)
 	}
-
 	if (window.localStorage.score && scoreArray.length <= nbTentatives)
 	{
 		scoreArray.push(localStorage.getItem('score'))
@@ -170,15 +169,16 @@ function Quiz(){
 	currentBar ++;
     progressionBar.value = currentBar
 	clearInterval(TimerID)
-	if (currentQuestionIndex < QUIZ.questions.length) {
-		// Afficher la question suivante
+	if (currentQuestionIndex < QUIZ.questions.length)
+	{
 		timer = 15
 		document.querySelector('#timer').innerText = timer + "s restante(s) pour répondre"
 		clearInterval(TimerID)
 		loadQuestion()
 		TimerID = setTimer()
 	}
-	else {
+	else
+	{
 		clearInterval(ID)
 		clearInterval(TimerID)
 		document.querySelector('#timer').innerText = ''
