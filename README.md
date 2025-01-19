@@ -18,7 +18,7 @@
 
 ### - Outils utilisés :
   
-    - Trello: Brainwriting/Kanban/Retroplanning/Plannification demo/Retrospective Speed Boat
+    - Trello: Kanban/Retroplanning/Retrospective 4L
     
     - Git et Git Hub
     
