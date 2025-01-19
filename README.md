@@ -69,11 +69,13 @@
    1️⃣**Chargement du quiz**
    
 📌  **Le script charge le quiz** en fonction de la valeur mémorisée dans le sessionStorage.
+
 📌  Si aucune valeur n'est présente, **le premier quiz (QUIZ1) est sélectionné par défaut.**
     
    2️⃣**Interactions utilisateur**
    
 📌 L'utilisateur sélectionne une réponse en **cliquant sur un bouton.**
+
 📌 Le script compare la réponse choisie avec la réponse correcte et **met à jour la couleur de la bordure**
       (vert pour correct, rouge pour incorrect).
 
@@ -82,6 +84,7 @@
  📌 Le **localStorage est utilisé pour sauvegarder** :
             -Les scores de chaque tentative.
             -Le nombre total de tentatives.
+            
  📌 Le **sessionStorage est utilisé pour mémoriser le thème choisi par l'utilisateur.**
 
    4️⃣**Navigation**
