@@ -91,6 +91,8 @@
    
  📌 Les boutons de navigation permettent de **changer de thème** en redémarrant le quiz avec de nouvelles questions.
 
+ 📌 - **Repondre aux normes d'accessibilité (a11y).**
+
         
 
      
